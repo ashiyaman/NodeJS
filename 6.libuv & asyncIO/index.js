@@ -19,14 +19,20 @@ https.get("https://restcountries.com/v3.1/name/india",
 
 //This is synchronous fn. ie. it blocks the main thread and v8 doesnt offloads it to libuv
 //Should be avoided by programmer (can use readFile instead)
-const fileData = fs.readFileSync("./data.json", "utf-8")
-console.log(fileData)
-console.log("File is read after ", new Date() - startTime)
+// const fileData = fs.readFileSync("./data.json", "utf-8")
+// console.log(fileData)
+// console.log("File is read after ", new Date() - startTime)
+
+const fileData = fs.readFile("./data.json", "utf-8", (err, data) => {
+    console.log("fileData: ", data)
+    console.log("File is read after ", new Date() - startTime)
+})
+
 
 function multiply(a, b){
     return a * b
 }
 
-console.log(multiply(a, b))
+console.log("Multiplication of a and b: ", multiply(a, b))
 console.log("Multiplication is done after ", new Date() - startTime)
 
